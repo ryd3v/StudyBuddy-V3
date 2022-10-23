@@ -33,7 +33,9 @@
     "build:windows": "electron-builder --win --dir",
     "dist:windows": "electron-builder --win",
     "build:macos": "electron-builder --macos --dir",
-    "dist:macos": "electron-builder --macos"
+    "dist:macos": "electron-builder --macos",
+    "build:linux": "electron-builder --linux --dir",
+    "dist:linux": "electron-builder --linux"
   },
   "eslintConfig": {
     "extends": [
@@ -68,6 +70,9 @@
     "appId": "com.ryd3v.rock.studybuddy",
     "mac": {
       "category": "public.app-category.utilities"
+    },
+    "linux": {
+      "category": "Utility"
     }
   }
 }
