@@ -2,11 +2,18 @@
   "name": "study-buddy-v3",
   "version": "0.1.0",
   "private": true,
-  "main": "main.js",
+  "author": {
+    "name": "Ryan Collins",
+    "email": "email@ryd3v.rocks"
+  },
+  "description": "A simple Study app",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
+    "electron-compile": "^6.4.4",
+    "electron-forge": "^5.2.4",
+    "electron-is-dev": "^2.0.0",
     "got": ">=12.5.2",
     "nth-check": ">=2.1.1",
     "react": "^18.2.0",
@@ -14,13 +21,19 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^3.0.4"
   },
-  "homepage": ".",
+  "main": "public/electron.js",
+  "homepage": "./",
   "scripts": {
-    "serve": "react-scripts start",
-    "start": "electron .",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "yarn start",
+    "electron": "electron .",
+    "package": "electron-forge package",
+    "make-mac": "react-scripts build && electron-forge make --platform darwin",
+    "make-linux": "react-scripts build && electron-forge make --platform linux",
+    "make": "electron-forge make"
   },
   "eslintConfig": {
     "extends": [
@@ -41,12 +54,43 @@
     ]
   },
   "devDependencies": {
+    "@electron-forge/maker-dmg": "^6.0.0-beta.67",
     "autoprefixer": "^10.4.12",
     "electron": "^21.2.0",
     "electron-builder": "^23.6.0",
+    "electron-prebuilt-compile": "8.2.0",
     "got": ">=12.5.2",
     "nth-check": ">=2.1.1",
     "postcss": "^8.4.18",
     "tailwindcss": "^3.2.1"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "study_buddy"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin",
+            "linux",
+            "win32"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   }
 }
