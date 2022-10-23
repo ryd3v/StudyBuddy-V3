@@ -1,8 +1,9 @@
 // ./public/electron.js
 const path = require('path');
 
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
 const isDev = require('electron-is-dev');
+const menu = require('../src/menu');
 
 function createWindow() {
   // Create the browser window.
@@ -46,3 +47,5 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+Menu.setApplicationMenu(menu);
