@@ -1,12 +1,4 @@
-const {
-  app,
-  Menu,
-  shell,
-  ipcMain,
-  BrowserWindow,
-  globalShortcut,
-  dialog,
-} = require('electron');
+const { app, Menu, shell } = require('electron');
 
 const template = [
   {
