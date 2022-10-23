@@ -1,6 +1,31 @@
-const items = require('./data.js');
+const { app, BrowserWindow, Menu } = require('electron');
+const menu = require('./menu');
+let win;
 
-var item = Array.from(items);
+function createWindow() {
+  win = new BrowserWindow({ width: 800, height: 600 });
 
-let study = item.sort(() => 0.5 - Math.random())[0];
-console.log(study);
+  //win.loadFile('index.html');
+  //win.loadURL(`file://${__dirname}/build/index.html`);
+  win.loadURL(`http://localhost:3000`);
+
+  win.on('closed', () => {
+    win = null;
+  });
+}
+
+app.on('ready', createWindow);
+
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
+});
+
+app.on('activate', () => {
+  if (win === null) {
+    createWindow();
+  }
+});
+
+Menu.setApplicationMenu(menu);
