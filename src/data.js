@@ -74,7 +74,7 @@ module.exports = [
   'CloudSecurity AWS CloudSecurity S3',
   'Container Security Container Breakouts',
   'Container Security Docker APIFirewall',
-  'Container Security Docker HostAttacks ',
+  'Container Security Docker Host Attacks ',
   'Container Security Docker ImageSecurity Docker Forensics',
   'Container Security Docker ImageSecurity Docker ImageAnalysis',
   'Container Security Docker ImageSecurity Docker Registry',

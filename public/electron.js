@@ -3,7 +3,7 @@ const path = require('path');
 
 const { app, BrowserWindow, Menu } = require('electron');
 const isDev = require('electron-is-dev');
-const menu = require('../src/menu');
+const menu = require('./menu');
 
 function createWindow() {
   // Create the browser window.
