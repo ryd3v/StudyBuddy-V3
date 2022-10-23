@@ -6,7 +6,7 @@ const template = [
   ...(isMac
     ? [
         {
-          label: app.name,
+          label: 'File',
           submenu: [
             { role: 'hide' },
             { role: 'unhide' },
