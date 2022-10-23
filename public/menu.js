@@ -1,13 +1,45 @@
-const { app, Menu, shell } = require('electron');
+const { app, Menu } = require('electron');
+const isMac = process.platform === 'darwin';
 
 const template = [
+  // { role: 'appMenu' }
+  ...(isMac
+    ? [
+        {
+          label: app.name,
+          submenu: [
+            { role: 'hide' },
+            { role: 'unhide' },
+            { type: 'separator' },
+            { role: 'quit' },
+          ],
+        },
+      ]
+    : []),
+  // { role: 'windowMenu' }
+  {
+    label: 'Window',
+    submenu: [
+      { role: 'minimize' },
+      { role: 'zoom' },
+      ...(isMac
+        ? [
+            { type: 'separator' },
+            { role: 'front' },
+            { type: 'separator' },
+            { role: 'window' },
+          ]
+        : [{ role: 'close' }]),
+    ],
+  },
   {
     role: 'help',
     submenu: [
       {
         label: 'About Study Buddy',
-        click() {
-          shell.openExternal('https://ryd3v.rocks/');
+        click: async () => {
+          const { shell } = require('electron');
+          await shell.openExternal('https://ryd3v.rocks/');
         },
       },
     ],
@@ -33,12 +65,9 @@ if (process.env.DEBUG) {
 }
 
 if (process.platform === 'darwin') {
-  template.unshift({
-    label: app.name,
-    submenu: [{ role: 'about' }, { type: 'separator' }, { role: 'quit' }],
-  });
+  const name = app.getName();
+  template.unshift({ label: name });
 }
 
 const menu = Menu.buildFromTemplate(template);
-
 module.exports = menu;
